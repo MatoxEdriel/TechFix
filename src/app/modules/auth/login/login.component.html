@@ -1,17 +1,30 @@
-<div class="relative overflow-hidden min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-  <div [ngClass]="{'page-enter': isEntering, 'page-leave': isLeaving}" class="w-full max-w-sm">
+<div class="overlay">
+
+ 
+  <div [ngClass]="{'page-enter': isEntering, 'page-leave': isLeaving}" class="login-modal">
+
     <h2>Iniciar sesión</h2>
 
     <form [formGroup]="form" (ngSubmit)="loginTest()">
 
-
       <input formControlName="username" type="text" placeholder="Usuario" required>
-
 
       <input formControlName="password" type="password" placeholder="Contraseña" required>
 
-      <button type="submit">Ingresar</button>
+      <div class="options">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="login-btn">Ingresar</button>
+
+      <p class="signup-text">¿No tienes una cuenta?
+        <a href="#">Regístrate</a>
+      </p>
+
     </form>
+
   </div>
+
 </div>
+
