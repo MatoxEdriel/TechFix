@@ -1,14 +1,17 @@
-<div class="login-container">
-  <h2>Iniciar sesión</h2>
+<div class="relative overflow-hidden min-h-screen flex items-center justify-center bg-gray-100 px-4">
 
-  <form [formGroup]="form" (ngSubmit)="login()">
+  <div [ngClass]="{'page-enter': isEntering, 'page-leave': isLeaving}" class="w-full max-w-sm">
+    <h2>Iniciar sesión</h2>
+
+    <form [formGroup]="form" (ngSubmit)="loginTest()">
 
 
-    <input formControlName="username" type="text" placeholder="Usuario" required>
+      <input formControlName="username" type="text" placeholder="Usuario" required>
 
 
-    <input formControlName="password"  type="password" placeholder="Contraseña" required>
+      <input formControlName="password" type="password" placeholder="Contraseña" required>
 
-    <button type="submit">Ingresar</button>
-  </form>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
 </div>

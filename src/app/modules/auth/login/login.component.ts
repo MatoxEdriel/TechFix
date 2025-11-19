@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
   imports: [
     ReactiveFormsModule,
     CommonModule
-
-
   ],
   standalone: true,
+  styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
 
@@ -20,10 +20,14 @@ export class LoginComponent implements OnInit {
   userName!: FormControl;
   password!: FormControl;
   hidePassword: boolean = false;
+  isEntering = true;
+  isLeaving = false;
+
 
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.form = this.fb.group({
       username: ['', [Validators.required]],
@@ -38,6 +42,10 @@ export class LoginComponent implements OnInit {
     this.password = this.form.get('password') as FormControl;
 
   }
+  loginTest() {
+    this.router.navigate(['/dashboard'])
+
+  }
 
   login() {
     if (this.form.valid) {
@@ -47,6 +55,21 @@ export class LoginComponent implements OnInit {
     }
 
 
+  }
+
+
+  onActivate() {
+    this.isEntering = true;
+    this.isLeaving = false;
+  }
+
+  onDeactivate() {
+    this.isEntering = false;
+    this.isLeaving = true;
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet?.activatedRouteData?.['animation'];
   }
 
 }
