@@ -24,3 +24,10 @@ body {
     font-weight: 700;
     color: #4f46e5;
 }
+
+
+html,
+
+::ng-deep .mat-mdc-text-field--filled .mat-mdc-form-field-flex {
+    background-color: white !important;
+}

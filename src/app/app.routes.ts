@@ -22,7 +22,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'Dashboard',
+        path: 'dashboard',
 
         component: LayoutComponent,
 
@@ -35,7 +35,6 @@ export const routes: Routes = [
 
 
     }
-
     ,
     { path: '**', redirectTo: 'auth/login' },
 
