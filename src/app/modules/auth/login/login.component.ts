@@ -72,4 +72,10 @@ export class LoginComponent implements OnInit {
     return outlet?.activatedRouteData?.['animation'];
   }
 
+
+
+  goToRegister(){
+
+    
+  }
 }
