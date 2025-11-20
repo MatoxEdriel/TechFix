@@ -1,3 +1,23 @@
-<p>
-  register works!
-</p>
+<div class="overlay">
+  <div [ngClass]="{'page-enter': isEntering, 'page-leave': isLeaving}" class="register-modal">
+    <h2>Crear cuenta</h2>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <input formControlName="fullName" type="text" placeholder="Nombre completo" required>
+      
+      <input formControlName="email" type="email" placeholder="Correo electrónico" required>
+      
+      <input formControlName="username" type="text" placeholder="Usuario" required>
+      
+      <input formControlName="password" type="password" placeholder="Contraseña" required>
+      
+      <input formControlName="confirmPassword" type="password" placeholder="Confirmar contraseña" required>
+
+      <button type="submit" class="register-btn">Registrarse</button>
+
+      <p class="login-text">¿Ya tienes una cuenta?
+        <a routerLink="/auth/login">Inicia sesión</a>
+      </p>
+    </form>
+  </div>
+</div>
