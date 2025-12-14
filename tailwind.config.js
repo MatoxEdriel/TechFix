@@ -4,7 +4,11 @@ module.exports = {
         "./src/**/*.{html,ts}"
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                'techfix-bg': '#F3F8FA',
+            },
+        },
     },
     plugins: [
         require("daisyui")
