@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   userName!: FormControl;
   password!: FormControl;
-  hidePassword: boolean = false;
+  showPassword: boolean = false;
   isEntering = true;
   isLeaving = false;
 
@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
     this.password = this.form.get('password') as FormControl;
 
   }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
   loginTest() {
     this.router.navigate(['/dashboard'])
 

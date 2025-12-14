@@ -11,7 +11,7 @@ import { AuthenticationRoutingModule } from './authentication.routing.module';
     ReactiveFormsModule,
     CommonModule,
     RouterLink,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
   ],
   declarations: [LoginComponent]
 })
