@@ -6,7 +6,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  standalone: false
+  standalone: true
 })
 export class LoginComponent implements OnInit {
 
