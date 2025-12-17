@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
       username: ['', [Validators.required]],
@@ -76,8 +77,8 @@ export class LoginComponent implements OnInit {
 
 
 
-  goToRegister() {
-
-
+  goToRecovery() {
+    this.router.navigate(['recovery'], { relativeTo: this.route });
   }
 }
+
