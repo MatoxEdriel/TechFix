@@ -1,44 +1,22 @@
-<div class="min-h-screen flex flex-col md:flex-row">
+<form [formGroup]="form" (ngSubmit)="loginTest()" class="space-y-4">
+  <input formControlName="username" type="text" placeholder="Usuario" class="input input-bordered w-full" required>
+  <div class="relative">
+    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"
+      class="input input-bordered w-full" required>
 
-  <div class="flex-1 flex items-center justify-center p-8 bg-techfix-bg">
-    <div class="w-full max-w-md">
-
-
-      <img src="/logo.png" alt="TechFix Logo" class="mx-auto">
-
-
-      <h2 class="text-4xl font-bold mb-6 text-primary">Iniciar sesión</h2>
-
-      <form [formGroup]="form" (ngSubmit)="loginTest()" class="space-y-4">
-        <input formControlName="username" type="text" placeholder="Usuario" class="input input-bordered w-full"
-          required>
-        <div class="relative">
-          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"
-            class="input input-bordered w-full" required>
-
-          <button type="button" (click)="togglePassword()"
-            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
-            <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-          </button>
-        </div>
-
-
-
-        <div class="flex justify-between text-sm text-primary">
-          <a href="#" class="hover:underline">¿Olvidaste tu contraseña?</a>
-        </div>
-
-        <button type="submit" class="btn btn-primary w-full mt-2">Ingresar</button>
-
-        <p class="text-center text-sm mt-4">
-          ¿No tienes una cuenta?
-          <a routerLink="/auth/register" class="text-primary font-semibold hover:underline">Regístrate</a>
-        </p>
-      </form>
-    </div>
+    <button type="button" (click)="togglePassword()"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700">
+      <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+    </button>
   </div>
 
-  <div class="hidden md:flex w-3/5 bg-cover bg-center" style="background-image: url('hero.jpg');">
-    <div class="bg-black bg-opacity-30 w-full h-full"></div>
+
+
+  <div class="flex justify-between text-sm text-black">
+    <a href="#" class="hover:underline">¿Olvidaste tu contraseña?</a>
   </div>
-</div>
+
+  <button type="submit" class="btn bg-techfix-orange text-white w-full mt-2 ">Ingresar</button>
+
+
+</form>
