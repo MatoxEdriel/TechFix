@@ -3,6 +3,7 @@ import { LoginComponent } from "./component/login/login.component";
 import { NgModule } from "@angular/core";
 import { LayoutLoginComponent } from "./pages/Layout-login/Layout-login.component";
 import { RecoveryPasswordComponent } from "./pages/recovery-password/recovery-password.component";
+import { VerifyCodeComponent } from "./pages/verify-code/verify-code";
 
 
 const routes: Routes = [
@@ -17,10 +18,13 @@ const routes: Routes = [
             {
                 path: 'recovery',
                 component: RecoveryPasswordComponent
+            },
+            {
+            path: 'verify',
+            component: VerifyCodeComponent
             }
 
-
-        ]
+    ]
     },
 
 

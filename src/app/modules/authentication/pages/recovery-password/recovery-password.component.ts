@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-recovery-password',
@@ -21,8 +22,8 @@ export class RecoveryPasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
-
+    private router: Router,
+    private route: ActivatedRoute
 
   ) {
     this.form = this.fb.group({
@@ -39,11 +40,13 @@ export class RecoveryPasswordComponent implements OnInit {
     this.email = this.form.get('email') as FormControl;
   }
 
-  sendRecoveryEmail() {
+ sendRecoveryEmail() {
+  this.router.navigate(['/auth/sign-in/verify']);
+}
 
-
-
-  }
+  goBack() {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
 
 
 }
