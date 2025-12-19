@@ -1,0 +1,32 @@
+
+<div class="card">
+<h2 style="font-weight: bold; font-size:28px; margin-bottom:15px; text-align:center;">
+  Verificación por email
+</h2>
+  <img 
+  src="email.png"
+  alt="Verificación por email"
+  style="width: 80px; display:block; margin:0 auto;"
+>
+
+
+  <p>
+    Hemos enviado un número de verificación a tu correo.
+    Introduce el código en el recuadro inferior.
+  </p>
+<hr/>
+
+  
+<input
+  formControlName="verificationCode"
+  type="text"
+  placeholder="Código de verificación"
+  class="input input-bordered w-full"
+  required
+>
+
+   <button type="button" (click)="verifyCode()" class="btn bg-techfix-orange text-white w-full mt-2 ">Verificación</button>
+
+
+
+</div>
