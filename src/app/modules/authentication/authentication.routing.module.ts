@@ -21,16 +21,16 @@ const routes: Routes = [
                 component: RecoveryPasswordComponent
             },
             {
-            path: 'verify',
-            component: VerifyCodeComponent
+                path: 'verify',
+                component: VerifyCodeComponent
             },
             {
                 path: 'reset-password',
                 component: ResetPasswordComponent
             }
-            
 
-    ]
+
+        ]
     },
 
 

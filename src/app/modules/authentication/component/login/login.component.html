@@ -1,4 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="loginTest()" class="space-y-4">
+  <h2 class="text-4xl font-bold text-techfix-blue">Iniciar sesión</h2>
+
+
   <input formControlName="username" type="text" placeholder="Usuario" class="input input-bordered w-full" required>
   <div class="relative">
     <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"
