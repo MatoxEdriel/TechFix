@@ -4,7 +4,7 @@
 
     <h2 class="text-3xl font-bold text-techfix-blue">
 
-      Verificacion de codigo
+      Verificación de código
     </h2>
 
     <button type="button" onclick="history.back()" class="text-techfix-orange transition-all duration-200
@@ -14,17 +14,28 @@
 
 
   </div>
-  <img src="email.png" alt="Verificación por email" class="w-20 mx-auto p-4 block">
 
   <p>
     Hemos enviado un número de verificación a tu correo.
     Introduce el código en el recuadro inferior.
   </p>
+  <img src="email.png" alt="Verificación por email" class="w-20 mx-auto p-4 block">
+
+
   <hr />
 
+  <div class="my-4">
 
-  <input formControlName="verificationCode" type="text" placeholder="Código de verificación"
-    class="input input-bordered w-full" required>
+    <ng-otp-input class="flex justify-center" (onInputChange)="onOtpChange($event)" [config]="{length: 4}">
+
+    </ng-otp-input>
+
+  </div>
+
+
+
+
+
 
   <button type="button" (click)="verifyCode()"
     class="btn bg-techfix-orange text-white w-full mt-2 ">Verificación</button>

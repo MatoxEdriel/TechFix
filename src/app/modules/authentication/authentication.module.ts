@@ -6,6 +6,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthenticationRoutingModule } from './authentication.routing.module';
 import { LayoutComponent } from '../../pages/layout/Layout/Layout.component';
 import { LayoutLoginComponent } from './pages/Layout-login/Layout-login.component';
+import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
+import { VerifyCodeComponent } from './pages/verify-code/verify-code';
+import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 
 @NgModule({
   imports: [
@@ -14,10 +17,11 @@ import { LayoutLoginComponent } from './pages/Layout-login/Layout-login.componen
     CommonModule,
     RouterLink,
     AuthenticationRoutingModule,
-
+    RouterOutlet,
+    NgOtpInputModule
 
 
   ],
-  declarations: []
+  declarations: [LoginComponent, LayoutLoginComponent, VerifyCodeComponent, RecoveryPasswordComponent],
 })
 export class AuthenticationModule { }
