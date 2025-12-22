@@ -6,8 +6,7 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: false,
 })
 export class LoginComponent implements OnInit {
 
@@ -32,7 +31,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]]
 
     });
-  
+
   }
 
   ngOnInit() {

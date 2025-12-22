@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-recovery-password',
   templateUrl: './recovery-password.component.html',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: false,
 })
 export class RecoveryPasswordComponent implements OnInit {
   form!: FormGroup;
@@ -40,13 +39,13 @@ export class RecoveryPasswordComponent implements OnInit {
     this.email = this.form.get('email') as FormControl;
   }
 
- sendRecoveryEmail() {
-  this.router.navigate(['/auth/sign-in/verify']);
-}
+  sendRecoveryEmail() {
+    this.router.navigate(['/auth/sign-in/verify']);
+  }
 
   goBack() {
-  this.router.navigate(['../'], { relativeTo: this.route });
-}
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
 
 
 }
