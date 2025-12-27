@@ -14,12 +14,12 @@ export class AuthService {
   private readonly baseUrl = environments.api.baseUrl;
   private readonly authPath = environments.auth.loginUrl;
 
-  login(user: loginUser): Observable<IHttpResponse<AuthResponse>> {
+  login(user: loginUser): Observable<AuthResponse> {
     const url = `${this.baseUrl}${this.authPath}`
-    return this.http.post<IHttpResponse<AuthResponse>>(url, user).pipe(
+    return this.http.post<AuthResponse>(url, user).pipe(
       tap(response => {
-        if (response?.data) {
-          this.saveSession(response.data)
+        if (response) {
+          this.saveSession(response)
         }
       })
     )

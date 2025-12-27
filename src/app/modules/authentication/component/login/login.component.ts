@@ -59,13 +59,17 @@ export class LoginComponent implements OnInit {
       pass: this.form.value.password
     }
 
+
     this.authService.login(claims).subscribe({
 
       next: (res) => {
-        if (res.data.first_login) {
-          this.router.navigate(['/auth/change-password'])
+
+        localStorage.setItem('access_token', res.access_token);
+
+        if (res.first_login === true) {
+          this.router.navigate(['/dashboard']);
         } else {
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/dashboard']);
         }
       },
       error: (err) => {
