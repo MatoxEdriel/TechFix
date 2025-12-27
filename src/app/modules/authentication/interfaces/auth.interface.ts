@@ -1,5 +1,5 @@
 export interface loginUser {
-    username: string;
+    user_name: string;
     pass?: string;
 
 }
