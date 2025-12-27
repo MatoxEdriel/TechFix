@@ -4,12 +4,12 @@ import { LoginComponent } from './component/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthenticationRoutingModule } from './authentication.routing.module';
-import { LayoutComponent } from '../../pages/layout/Layout/Layout.component';
 import { LayoutLoginComponent } from './pages/Layout-login/Layout-login.component';
 import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -20,7 +20,8 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     AuthenticationRoutingModule,
     RouterOutlet,
     NgOtpInputModule,
-    FormsModule
+    FormsModule,
+    
 
 
 

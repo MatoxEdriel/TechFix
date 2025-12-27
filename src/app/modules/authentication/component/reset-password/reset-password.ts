@@ -8,21 +8,12 @@ import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidationE
 
 })
 export class ResetPasswordComponent implements OnInit {
-
-
   form!: FormGroup;
-
-
   password!: FormControl;
-
   confirmPassword!: FormControl;
-
-
   passwordStrength: string = '';
   strengthColor: string = '';
   strengthWidth: string = 'w-0';
-
-
   ngOnInit(): void {
     this.form.get('password')?.valueChanges.subscribe(value => {
       this.checkStrength(value);
