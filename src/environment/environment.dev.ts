@@ -1,16 +1,16 @@
-export interface environments {
+export const environments = {
 
-    production: boolean;
+    production: false,
 
     api: {
-        baseUrl: 'http://localhost:3000'
+        baseUrl: 'http://localhost:3000',
         version: 'v1'
-    }
+    },
 
     auth: {
         loginUrl: '/auth/login',
 
-    }
+    },
 
     app: {
         name: 'TechFix Front'

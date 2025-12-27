@@ -9,17 +9,12 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
   standalone: false,
 })
 export class LoginComponent implements OnInit {
-
-
-
   form!: FormGroup;
   userName!: FormControl;
   password!: FormControl;
   showPassword: boolean = false;
   isEntering = true;
   isLeaving = false;
-
-
 
   constructor(
     private fb: FormBuilder,
