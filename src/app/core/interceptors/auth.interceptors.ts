@@ -23,6 +23,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }
     return next(authReq).pipe(
         catchError((error) => {
+            //el back me manda si ya expiro xdxd
             if (error.status === 401) {
                 console.warn('Sesión expirada o no autorizada. Cerrando sesión...');
                 authService.logOut();

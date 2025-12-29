@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { STORAGE_KEYS } from '../core/constants/storage.constants';
+import { STORAGE_KEYS } from '../constants/storage.constants';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
