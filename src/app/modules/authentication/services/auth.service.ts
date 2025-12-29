@@ -4,12 +4,16 @@ import { Observable, tap } from 'rxjs';
 import { environments } from '../../../../environment/environment.dev';
 import { loginUser } from '../interfaces/auth.interface';
 import { AuthResponse, IHttpResponse } from '../../../interfaces/response.interface';
+import { STORAGE_KEYS } from '../../../core/constants/storage.constants';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private http = inject(HttpClient);
+  private router = inject(Router);
+
 
   private readonly baseUrl = environments.api.baseUrl;
   private readonly authPath = environments.auth.loginUrl;
@@ -26,14 +30,34 @@ export class AuthService {
   }
 
   private saveSession(data: AuthResponse): void {
-    localStorage.setItem('token', data.access_token);
-    localStorage.setItem('first_login', String(data.first_login));
-    localStorage.setItem('user', JSON.stringify(data.user))
+    localStorage.setItem(STORAGE_KEYS.TOKEN, data.access_token);
+    localStorage.setItem(STORAGE_KEYS.FIRST_LOGIN, String(data.first_login));
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data.user))
   }
 
 
+  logOut() {
+
+    localStorage.removeItem(STORAGE_KEYS.TOKEN)
+    localStorage.removeItem(STORAGE_KEYS.USER);
+    localStorage.removeItem(STORAGE_KEYS.FIRST_LOGIN);
+
+    this.router.navigate(['/auth/sign-in']).then(() => {
+
+      window.location.reload();
+
+    })
+
+
+
+
+
+  }
+
+
+
   get currentUser() {
-    const user = localStorage.getItem('user')
+    const user = localStorage.getItem(STORAGE_KEYS.USER);
     return user ? JSON.parse(user) : null
   }
 }

@@ -9,7 +9,6 @@ import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     NgOtpInputModule,
     FormsModule,
-    
+
 
 
 
