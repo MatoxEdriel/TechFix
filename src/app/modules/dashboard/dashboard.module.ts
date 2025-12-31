@@ -4,13 +4,17 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { LayoutDashboardComponent } from './layout-dashboard/layout-dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SidebarComponent } from '../../shared/components/Sidebar/Sidebar.component';
+import { TopbarComponent } from "../../shared/components/Topbar/Topbar.component";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterOutlet,
     RouterLink,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SidebarComponent,
+    TopbarComponent
   ],
   declarations: [LayoutDashboardComponent, HomeComponent]
 })

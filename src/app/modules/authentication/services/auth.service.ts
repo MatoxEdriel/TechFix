@@ -41,17 +41,9 @@ export class AuthService {
     localStorage.removeItem(STORAGE_KEYS.TOKEN)
     localStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.FIRST_LOGIN);
-
     this.router.navigate(['/auth/sign-in']).then(() => {
-
       window.location.reload();
-
     })
-
-
-
-
-
   }
 
 
