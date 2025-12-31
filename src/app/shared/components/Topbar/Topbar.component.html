@@ -1,0 +1,81 @@
+<header
+  class="fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-4 transition-all duration-200">
+
+  <div class="flex items-center gap-4">
+
+    <button (click)="toggleMenu.emit()"
+      class="p-2 text-gray-500 rounded-full hover:bg-gray-100 hover:text-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-100 cursor-pointer">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+
+    <a routerLink="/dashboard/home"
+      class="flex items-center gap-2 text-xl font-bold text-gray-800 tracking-tight no-underline cursor-pointer">
+
+      <img src="/logo3.jpg" alt="TechFix Logo" class="h-10 w-auto object-contain">
+
+    </a>
+  </div>
+
+  <div class="flex items-center gap-4">
+
+    <button
+      class="hidden md:flex p-2 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-600 transition-colors relative cursor-pointer">
+      <i class="fa-solid fa-bell text-lg"></i>
+      <span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 border border-white"></span>
+    </button>
+
+    <button
+      class="hidden md:flex p-2 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-600 transition-colors cursor-pointer">
+      <i class="fa-solid fa-gear text-lg"></i>
+    </button>
+
+    <div class="hidden md:block h-8 w-px bg-gray-200 mx-1"></div>
+
+    <div class="relative">
+
+      <button (click)="toggleProfileMenu()" class="flex items-center gap-3 focus:outline-none group cursor-pointer">
+
+        <div class="text-right hidden md:block">
+          <p class="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">Admin User</p>
+          <p class="text-xs text-gray-400">Administrador</p>
+        </div>
+
+        <div
+          class="h-10 w-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold shadow-sm group-hover:shadow-md transition-all">
+          AD
+        </div>
+      </button>
+
+      <div *ngIf="isProfileMenuOpen"
+        class="absolute right-0 mt-3 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 animate-fade-in-down origin-top-right z-50">
+
+        <div class="px-4 py-2 border-b border-gray-100 mb-1 md:hidden">
+          <p class="text-sm font-bold text-gray-800">Admin User</p>
+          <p class="text-xs text-gray-500">admin@techfix.com</p>
+        </div>
+
+        <a routerLink="/dashboard/profile"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 cursor-pointer flex items-center gap-2 transition-colors">
+          <i class="fa-regular fa-user fa-fw text-gray-400"></i> Mi Perfil
+        </a>
+
+        <a
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 cursor-pointer flex items-center gap-2 transition-colors">
+          <i class="fa-solid fa-gear fa-fw text-gray-400"></i> Configuración
+        </a>
+
+        <div class="border-t border-gray-100 my-1"></div>
+
+        <button (click)="logout()"
+          class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer flex items-center gap-2 transition-colors">
+          <i class="fa-solid fa-right-from-bracket fa-fw"></i> Cerrar Sesión
+        </button>
+      </div>
+
+      <div *ngIf="isProfileMenuOpen" (click)="isProfileMenuOpen = false" class="fixed inset-0 z-40 cursor-default">
+      </div>
+
+    </div>
+
+  </div>
+</header>

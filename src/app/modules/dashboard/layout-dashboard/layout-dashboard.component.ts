@@ -12,4 +12,9 @@ export class LayoutDashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  isSidebarOpen = true;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
