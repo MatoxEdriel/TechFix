@@ -3,3 +3,14 @@ export interface loginUser {
     pass?: string;
 
 }
+
+
+export interface user {
+    id: number;
+    user_name: string;
+    fullName: string;
+    roles: string[];
+    rolesIds: number[];
+
+
+}
