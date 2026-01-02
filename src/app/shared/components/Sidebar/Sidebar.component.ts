@@ -16,28 +16,20 @@ export class SidebarComponent implements OnInit {
 
 
   @Input() isOpen = true;
-  private menuService = inject(MenuService);
 
-  menuData: MenuSection[] = []
+
+  @Input() menuItems: MenuSection[] = []
 
   expandedMenu: string | null = null;
 
   constructor() { }
   ngOnInit() {
-    this.loadMenu();
+
+
+
   }
 
-  loadMenu() {
-    this.menuService.getMenu().subscribe({
-      next: (data) => {
-        this.menuData = data;
 
-      },
-      error: (err) => {
-        console.error('Error obteniendo el menú:', err);
-      }
-    });
-  }
   toggleSubmenu(label: string) {
     if (this.expandedMenu === label) {
       this.expandedMenu = null;
