@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { delay, Observable, tap } from 'rxjs';
 import { environments } from '../../../../environment/environment.dev';
 import { loginUser } from '../interfaces/auth.interface';
 import { AuthResponse, IHttpResponse } from '../../../interfaces/response.interface';
@@ -21,6 +21,7 @@ export class AuthService {
   login(user: loginUser): Observable<AuthResponse> {
     const url = `${this.baseUrl}${this.authPath}`
     return this.http.post<AuthResponse>(url, user).pipe(
+      delay(3000),
       tap(response => {
         if (response) {
           this.saveSession(response)

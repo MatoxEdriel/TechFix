@@ -29,7 +29,9 @@
     "@angular/platform-browser": "^20.2.0",
     "@angular/router": "^20.2.0",
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "lottie-web": "^5.13.0",
     "ng-otp-input": "^2.0.9",
+    "ngx-lottie": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
