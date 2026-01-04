@@ -25,6 +25,6 @@ export class VerifyCodeComponent {
   }
 
   verifyCode() {
-    this.router.navigate(['/auth/sign-in/reset-password']);
+    this.router.navigate(['/auth/reset-password']);
   }
 }

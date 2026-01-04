@@ -9,6 +9,7 @@ import { NgOtpInputComponent, NgOtpInputModule } from 'ng-otp-input';
 import { VerifyCodeComponent } from './pages/verify-code/verify-code';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password';
+import { FirstLoginComponent } from './component/first-login/first-login.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,6 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
 
 
   ],
-  declarations: [LoginComponent, LayoutLoginComponent, VerifyCodeComponent, RecoveryPasswordComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, LayoutLoginComponent, VerifyCodeComponent, RecoveryPasswordComponent, ResetPasswordComponent, FirstLoginComponent],
 })
 export class AuthenticationModule { }
