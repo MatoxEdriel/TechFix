@@ -1,59 +1,36 @@
-# TechFix
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+📌 About TechFix
 
-## Development server
+TechFix is a comprehensive platform designed to manage mobile phone repair inventory and operations.
+It helps technicians and businesses efficiently control products, spare parts, and usage data, while providing intelligent insights to improve decision-making.
 
-To start a local development server, run:
+The platform is focused on inventory optimization, product usage analysis, and compatibility recommendations for mobile device repairs.
 
-```bash
-ng serve
-```
+<img width="1425" height="815" alt="image" src="https://github.com/user-attachments/assets/9a9ddef2-1396-4aa7-a73c-18e4499b005b" />
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+🚀 Key Features
+	•	📦 Inventory Management
+	•	Manage mobile phone products and spare parts
+	•	Track stock levels in real time
+	•	Register product entries and exits
+	•	📊 Product Usage Analytics
+	•	Analyze which products and spare parts are used most frequently
+	•	Generate usage statistics to improve purchasing decisions
+	•	Identify high-demand components
+	•	🔧 Compatibility Suggestions
+	•	Suggest compatible spare parts for specific mobile phone models
+	•	Reduce errors during repairs
+	•	Speed up the repair process with intelligent recommendations
+	•	🔐 Authentication & Authorization
+	•	Secure access using JWT authentication
+	•	Role-based access control
+	•	Route guards and permission interceptors
+	•	🧑‍🔧 User & Role Management
+	•	Manage technicians and administrators
+	•	Control permissions for actions and modules
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+⸻
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🧠 Future Improvements
+	•	📈 Advanced analytics and reporting dashboards
