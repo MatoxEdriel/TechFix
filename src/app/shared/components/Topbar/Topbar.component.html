@@ -31,7 +31,7 @@
 
 
 
-    <button (click)="themeService.toggleTheme()"
+    <button (click)="switchTheme($event)"
       class="p-2 rounded-full transition-colors cursor-pointer mr-2 text-gray-400 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
       <i *ngIf="themeService.darkMode()" class="fa-solid fa-sun text-yellow-400 text-lg"></i>
       <i *ngIf="!themeService.darkMode()" class="fa-solid fa-moon text-gray-500 dark:text-gray-400 text-lg"></i>

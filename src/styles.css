@@ -1,3 +1,26 @@
+/* styles.scss */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::view-transition-new(root) {
+    animation: clip 0.6s ease-in;
+    mix-blend-mode: normal;
+    z-index: 9999;
+}
+
+::view-transition-old(root),
+.dark::view-transition-old(root) {
+    z-index: -1;
+    animation: none;
+}
+
+@keyframes clip {
+    from {
+        clip-path: circle(0% at var(--x) var(--y));
+    }
+
+    to {
+        clip-path: circle(150% at var(--x) var(--y));
+    }
+}
