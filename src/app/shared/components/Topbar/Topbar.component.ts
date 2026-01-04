@@ -22,8 +22,25 @@ export class TopbarComponent implements OnInit {
   public themeService = inject(ThemeService);
 
 
+  //Test de cambio por rendimiento 
+  switchTheme(event: MouseEvent) {
 
+    const x = event.clientX;
+    const y = event.clientY;
 
+    const root = document.documentElement;
+    root.style.setProperty('--x', x + 'px');
+    root.style.setProperty('--y', y + 'px');
+
+    if (!document.startViewTransition) {
+      this.themeService.toggleTheme();
+      return;
+    }
+
+    document.startViewTransition(() => {
+      this.themeService.toggleTheme();
+    });
+  }
   constructor(private readonly authService: AuthService) { }
 
   ngOnInit() {

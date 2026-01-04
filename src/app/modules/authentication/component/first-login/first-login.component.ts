@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-login',
@@ -16,8 +18,12 @@ export class FirstLoginComponent implements OnInit {
   strengthColor: string = '';
   strengthWidth: string = 'w-0';
 
+  isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private readonly authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder) {
     this.form = this.fb.group({
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
@@ -32,7 +38,22 @@ export class FirstLoginComponent implements OnInit {
 
   resetPassword() {
     if (this.form.valid) {
-      console.log(this.form.value);
+
+      this.isLoading = true;
+      this.form.disable();
+
+      const newPass = this.form.get('password')?.value;
+
+      this.authService.updatePassword(newPass).subscribe({
+        next: (response) => {
+          this.router.navigate(['/dashboard'])
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.form.enable();
+          alert('xd')
+        }
+      })
     } else {
       this.form.markAllAsTouched();
     }

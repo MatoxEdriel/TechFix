@@ -7,6 +7,7 @@ import { VerifyCodeComponent } from "./pages/verify-code/verify-code";
 import { ResetPasswordComponent } from "./component/reset-password/reset-password";
 import { FirstLoginComponent } from "./component/first-login/first-login.component";
 import { authGuard } from "../../core/guards/auth-guard";
+import { guestGuard } from "../../core/guards/guest-guard";
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
         children: [
             {
                 path: 'sign-in',
-                component: LoginComponent
+                component: LoginComponent,
+                canActivate: [guestGuard]
             },
             {
                 path: 'recovery',
