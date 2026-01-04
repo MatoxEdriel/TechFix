@@ -40,11 +40,11 @@ export class RecoveryPasswordComponent implements OnInit {
   }
 
   sendRecoveryEmail() {
-    this.router.navigate(['/auth/sign-in/verify']);
+    this.router.navigate(['/auth/verify']);
   }
 
   goBack() {
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.router.navigate(['/auth/sign-in'], { relativeTo: this.route });
   }
 
 

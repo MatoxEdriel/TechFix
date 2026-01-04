@@ -14,7 +14,7 @@ export interface IHttpResponseError<T> extends HttpErrorResponse {
 export interface AuthResponse {
 
     access_token: string;
-    first_login: boolean;
+    first_login: boolean | null;
     user: UserInfo
 
 }

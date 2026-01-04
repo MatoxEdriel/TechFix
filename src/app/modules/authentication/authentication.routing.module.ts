@@ -5,15 +5,17 @@ import { LayoutLoginComponent } from "./pages/Layout-login/Layout-login.componen
 import { RecoveryPasswordComponent } from "./pages/recovery-password/recovery-password.component";
 import { VerifyCodeComponent } from "./pages/verify-code/verify-code";
 import { ResetPasswordComponent } from "./component/reset-password/reset-password";
+import { FirstLoginComponent } from "./component/first-login/first-login.component";
+import { authGuard } from "../../core/guards/auth-guard";
 
 
 const routes: Routes = [
     {
-        path: 'sign-in',
+        path: '',
         component: LayoutLoginComponent,
         children: [
             {
-                path: '',
+                path: 'sign-in',
                 component: LoginComponent
             },
             {
@@ -27,6 +29,18 @@ const routes: Routes = [
             {
                 path: 'reset-password',
                 component: ResetPasswordComponent
+            },
+            {
+                path: 'change-password',
+                component: FirstLoginComponent,
+                canActivate: [authGuard]
+
+            },
+
+            {
+                path: '',
+                redirectTo: 'sign-in',
+                pathMatch: 'full'
             }
 
 
