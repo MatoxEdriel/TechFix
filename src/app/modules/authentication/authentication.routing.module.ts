@@ -30,12 +30,7 @@ const routes: Routes = [
                 path: 'reset-password',
                 component: ResetPasswordComponent
             },
-            {
-                path: 'change-password',
-                component: FirstLoginComponent,
-                canActivate: [authGuard]
 
-            },
 
             {
                 path: '',
@@ -45,6 +40,13 @@ const routes: Routes = [
 
 
         ]
+    },
+
+    {
+        path: 'change-password',
+        component: FirstLoginComponent,
+        canActivate: [authGuard]
+
     },
 
 
