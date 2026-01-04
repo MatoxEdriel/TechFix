@@ -30,12 +30,29 @@ export class AuthService {
     )
   }
 
+  //Cambio de contraseña con reemplazo de token 
+
+  updatePassword(newPassword: string) {
+    const url = `${this.baseUrl}/auth/change-password`
+
+    const body = { pass: newPassword };
+
+    return this.http.patch<AuthResponse>(url, body).pipe(
+      tap(response => {
+        this.saveSession(response)
+      })
+    )
+  }
+
   private saveSession(data: AuthResponse): void {
     localStorage.setItem(STORAGE_KEYS.TOKEN, data.access_token);
     localStorage.setItem(STORAGE_KEYS.FIRST_LOGIN, String(data.first_login));
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data.user))
   }
 
+  get isFirstLogin(): boolean {
+    return localStorage.getItem(STORAGE_KEYS.FIRST_LOGIN) === 'true';
+  }
 
   logOut() {
 
@@ -46,6 +63,8 @@ export class AuthService {
       window.location.reload();
     })
   }
+
+
 
 
 
