@@ -5,8 +5,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-Layout-login',
   templateUrl: './Layout-login.component.html',
-  imports: [RouterOutlet],
-  standalone: true,
+  standalone: false,
 })
 export class LayoutLoginComponent implements OnInit {
 
