@@ -40,12 +40,33 @@ export class RecoveryPasswordComponent implements OnInit {
   }
 
   sendRecoveryEmail() {
-    this.router.navigate(['/auth/verify']);
+    if (this.form.valid) {
+      console.log('Email válido:', this.form.value.email);
+   
+      this.router.navigate(['/auth/verify']);
+    } else {
+   
+      this.form.markAllAsTouched();
+    }
   }
+  
 
   goBack() {
     this.router.navigate(['/auth/sign-in'], { relativeTo: this.route });
   }
 
+get emailInvalid(): boolean {
+    return this.email.invalid && (this.email.dirty || this.email.touched);
+  }
 
+  get emailErrorMessage(): string {
+    if (this.email.hasError('required')) {
+      return 'El correo electrónico es requerido';
+    }
+    if (this.email.hasError('email')) {
+      return 'Ingresa un correo electrónico válido';
+    }
+    return '';
+  }
 }
+
