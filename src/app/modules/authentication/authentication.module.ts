@@ -10,6 +10,7 @@ import { VerifyCodeComponent } from './pages/verify-code/verify-code';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password';
 import { FirstLoginComponent } from './component/first-login/first-login.component';
+import { ToastComponent } from '../../shared/components/toast/toast.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FirstLoginComponent } from './component/first-login/first-login.compone
     RouterOutlet,
     NgOtpInputModule,
     FormsModule,
+    ToastComponent
 
 
 

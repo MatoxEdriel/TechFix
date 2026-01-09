@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { loginUser } from '../../interfaces/auth.interface';
+import { ToastComponent } from '../../../../shared/components/toast/toast.component';
+import { ToastService } from '../../../../shared/services/Toast.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,11 @@ import { loginUser } from '../../interfaces/auth.interface';
   standalone: false,
 })
 export class LoginComponent implements OnInit {
+
+
+
+
+
   form!: FormGroup;
   user_name!: FormControl;
   password!: FormControl;
@@ -22,7 +29,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService
   ) {
     this.form = this.fb.group({
       user_name: ['', [Validators.required]],
@@ -31,6 +39,11 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+
+
+
+
 
   ngOnInit() {
     this.user_name = this.form.get('user_name') as FormControl;
@@ -64,14 +77,27 @@ export class LoginComponent implements OnInit {
 
         if (res.first_login) {
           this.router.navigate(['/auth/change-password']);
+          this.toastService.show('Bienvenido', 'success');
         } else {
           this.router.navigate(['/dashboard']);
+          this.toastService.show('Inicio de sesión exitoso', 'success');
+
         }
       },
       error: (err) => {
-        alert('Usuario incorrecto')
+        const apiError = err.error;
+        let message = apiError?.message || 'Credenciales incorrectas. Por favor, inténtalo de nuevo.';
 
 
+        if (err.status === 401) {
+          message = 'Usuario o contraseña incorrectos. Inténtalo de nuevo.';
+        } else {
+
+          message = apiError?.message || 'Error al conectar con el servidor';
+
+        }
+
+        this.toastService.show(message, 'error');
       }
 
 

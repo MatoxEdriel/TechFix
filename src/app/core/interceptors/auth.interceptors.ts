@@ -24,8 +24,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(authReq).pipe(
         catchError((error) => {
             //el back me manda si ya expiro xdxd
-            if (error.status === 401) {
-                console.warn('Sesión expirada o no autorizada. Cerrando sesión...');
+
+            //! en este ejemplo la persona al intentar entrar con la contraseña incorrecta
+            //!pues recibe el 401 y para evitar la recarga de pagina pues 
+            const isLoginRequest = req.url.includes('/login') || req.url.includes('auth');
+            if (error.status === 401 && !isLoginRequest) {
+                console.warn('Sesión expirada. Cerrando sesión...');
                 authService.logOut();
             }
             return throwError(() => error);
