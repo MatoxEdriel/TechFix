@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
           this.toastService.show('Bienvenido', 'success');
         } else {
           this.router.navigate(['/dashboard']);
-          this.toastService.show('Inicio de sesión exitoso', 'success');
 
         }
       },
