@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SidebarComponent } from '../../shared/components/Sidebar/Sidebar.component';
 import { TopbarComponent } from "../../shared/components/Topbar/Topbar.component";
+import { DashboardCardComponent } from '../../shared/components/dashboard-card/dashboard-card.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { TopbarComponent } from "../../shared/components/Topbar/Topbar.component
     RouterLink,
     DashboardRoutingModule,
     SidebarComponent,
-    TopbarComponent
+    TopbarComponent,
+    DashboardCardComponent
   ],
   declarations: [LayoutDashboardComponent, HomeComponent]
 })
