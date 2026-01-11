@@ -8,6 +8,8 @@ import { SidebarComponent } from '../../shared/components/Sidebar/Sidebar.compon
 import { TopbarComponent } from "../../shared/components/Topbar/Topbar.component";
 import { DashboardCardComponent } from '../../shared/components/dashboard-card/dashboard-card.component';
 import { ServicesTechfixComponent } from './pages/services-techfix/services-techfix.component';
+import { UsersComponent } from './pages/users/users.component';
+import { TableListComponent } from '../../shared/components/table-list/table-list.component';
 
 @NgModule({
   imports: [
@@ -17,8 +19,9 @@ import { ServicesTechfixComponent } from './pages/services-techfix/services-tech
     DashboardRoutingModule,
     SidebarComponent,
     TopbarComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    TableListComponent
   ],
-  declarations: [LayoutDashboardComponent, HomeComponent, ServicesTechfixComponent]
+  declarations: [LayoutDashboardComponent, HomeComponent, ServicesTechfixComponent, UsersComponent]
 })
 export class DashboardModule { }
