@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
 
+  //Dashboard card interactivos 
+  //! -Faltantes guardar la posicion 
+  //! Definir que informacion mostrar 
 
   @ViewChild('grid', { static: false }) gridElement!: ElementRef;
 
@@ -67,7 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       {
         column: 12,
         margin: 36,
-      
+
         draggable: {},
         resizable: { handles: 'all' }
       },

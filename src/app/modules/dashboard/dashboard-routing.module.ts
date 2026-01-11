@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LayoutDashboardComponent } from './layout-dashboard/layout-dashboard.component';
 import { needsPasswordChangeGuard } from '../../core/guards/needs-password-change-guard';
+import { ServicesTechfixComponent } from './pages/services-techfix/services-techfix.component';
 
 
 
@@ -19,6 +20,14 @@ const routes: Routes = [
         path: '',
         component: HomeComponent
       },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'services',
+        component: ServicesTechfixComponent
+      }
 
 
 

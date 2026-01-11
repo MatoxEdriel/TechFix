@@ -7,6 +7,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SidebarComponent } from '../../shared/components/Sidebar/Sidebar.component';
 import { TopbarComponent } from "../../shared/components/Topbar/Topbar.component";
 import { DashboardCardComponent } from '../../shared/components/dashboard-card/dashboard-card.component';
+import { ServicesTechfixComponent } from './pages/services-techfix/services-techfix.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { DashboardCardComponent } from '../../shared/components/dashboard-card/d
     TopbarComponent,
     DashboardCardComponent
   ],
-  declarations: [LayoutDashboardComponent, HomeComponent]
+  declarations: [LayoutDashboardComponent, HomeComponent, ServicesTechfixComponent]
 })
 export class DashboardModule { }

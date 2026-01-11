@@ -2,9 +2,11 @@
     position: relative;
     width: 100%;
     min-height: 400px;
+    padding: 16px;
+
 }
 
-/* Fondo */
+
 .grid-bg {
     position: absolute;
     inset: 0;
