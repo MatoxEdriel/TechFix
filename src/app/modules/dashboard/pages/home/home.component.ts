@@ -66,7 +66,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.grid = GridStack.init(
       {
         column: 12,
-        margin: '16px',
+        margin: 36,
+      
         draggable: {},
         resizable: { handles: 'all' }
       },

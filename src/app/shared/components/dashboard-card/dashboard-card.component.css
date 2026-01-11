@@ -6,5 +6,6 @@
 .grid-stack-item-content {
     height: 100%;
     padding: 16px;
+    overflow: hidden;
     box-sizing: border-box;
 }
