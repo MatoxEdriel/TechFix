@@ -21,6 +21,7 @@ export class LayoutDashboardComponent {
  pasa en este componente, eso es ONPUSH 
   */
 
+ 
   private readonly menuService = inject(MenuService);
   readonly menuData$ = this.menuService.getMenu();
   isSidebarOpen = true;
