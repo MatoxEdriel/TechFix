@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environments } from '../../../environment/environment.dev';
 import { Observable } from 'rxjs';
-import { AuthResponse } from '../../interfaces/response.interface';
+import { IHttpResponse } from '../../interfaces/response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,8 @@ export class EmailService {
 
 
 
-  sendEmail(email: string): Observable<AuthResponse> {
+  sendEmail(email: string): Observable<IHttpResponse<string>> {
     const url = `${this.baseUrl}/auth/send-code`
-
-    return this.http.post<AuthResponse>(url, { email })
+    return this.http.post<IHttpResponse<string>>(url, { email })
   }
 }

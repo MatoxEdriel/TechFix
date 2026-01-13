@@ -73,9 +73,9 @@ export class LoginComponent implements OnInit {
 
       next: (res) => {
 
-        localStorage.setItem('access_token', res.access_token);
+        localStorage.setItem('access_token', res.data.access_token);
 
-        if (res.first_login) {
+        if (res.data.first_login) {
           this.router.navigate(['/auth/change-password']);
           this.toastService.show('Bienvenido', 'success');
         } else {
