@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EmailService } from '../../../../shared/services/email.service';
+import { ToastService } from '../../../../shared/services/Toast.service';
 
 
 @Component({
@@ -22,7 +24,9 @@ export class RecoveryPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private readonly emailService: EmailService,
+    private readonly toastService: ToastService
 
   ) {
     this.form = this.fb.group({
@@ -34,6 +38,8 @@ export class RecoveryPasswordComponent implements OnInit {
 
   }
 
+
+
   ngOnInit() {
 
     this.email = this.form.get('email') as FormControl;
@@ -41,21 +47,32 @@ export class RecoveryPasswordComponent implements OnInit {
 
   sendRecoveryEmail() {
     if (this.form.valid) {
-      console.log('Email válido:', this.form.value.email);
-   
-      this.router.navigate(['/auth/verify']);
+
+      const email = this.form.value.email;
+
+      this.emailService.sendEmail(email).subscribe({
+        next: (res) => {
+          this.toastService.show('Correo de recuperacion enviado ', 'success');
+          this.router.navigate(['/auth/verify']);
+        },
+        error: (err) => {
+          this.toastService.show('Error al enviar el correo de recuperación', 'error');
+        }
+      })
+
+
     } else {
-   
+
       this.form.markAllAsTouched();
     }
   }
-  
+
 
   goBack() {
     this.router.navigate(['/auth/sign-in'], { relativeTo: this.route });
   }
 
-get emailInvalid(): boolean {
+  get emailInvalid(): boolean {
     return this.email.invalid && (this.email.dirty || this.email.touched);
   }
 

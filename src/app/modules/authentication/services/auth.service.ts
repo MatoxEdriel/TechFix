@@ -18,13 +18,13 @@ export class AuthService {
   private readonly baseUrl = environments.api.baseUrl;
   private readonly authPath = environments.auth.loginUrl;
 
-  login(user: loginUser): Observable<AuthResponse> {
+  login(user: loginUser): Observable<IHttpResponse<AuthResponse>> {
     const url = `${this.baseUrl}${this.authPath}`
-    return this.http.post<AuthResponse>(url, user).pipe(
+    return this.http.post<IHttpResponse<AuthResponse>>(url, user).pipe(
 
       tap(response => {
-        if (response) {
-          this.saveSession(response)
+        if (response.data) {
+          this.saveSession(response.data)
         }
       })
     )
@@ -53,6 +53,7 @@ export class AuthService {
   get isFirstLogin(): boolean {
     return localStorage.getItem(STORAGE_KEYS.FIRST_LOGIN) === 'true';
   }
+
 
   logOut() {
 

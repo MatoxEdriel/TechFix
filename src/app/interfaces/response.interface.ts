@@ -2,13 +2,17 @@ import { HttpErrorResponse } from "@angular/common/http";
 
 export interface IHttpResponse<T> {
     message: string;
-    error: string;
+    error: string | null;
     statusCode: number;
     data: T
 }
 
-export interface IHttpResponseError<T> extends HttpErrorResponse {
-    error: IHttpResponse<T>;
+
+//Explicacion especificamos que ucnado haya un error 
+//!desde el back mandamos un null en la data por lo tanto 
+//cuando haya error pues no se debe enviar un objeto en si 
+export interface IHttpResponseError extends HttpErrorResponse {
+    error: IHttpResponse<null>;
 }
 
 export interface AuthResponse {
@@ -18,6 +22,8 @@ export interface AuthResponse {
     user: UserInfo
 
 }
+
+
 
 
 export interface UserInfo {
