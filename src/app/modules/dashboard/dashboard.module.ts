@@ -20,7 +20,8 @@ import { TableListComponent } from '../../shared/components/table-list/table-lis
     SidebarComponent,
     TopbarComponent,
     DashboardCardComponent,
-    TableListComponent
+    TableListComponent,
+    
   ],
   declarations: [LayoutDashboardComponent, HomeComponent, ServicesTechfixComponent, UsersComponent]
 })
