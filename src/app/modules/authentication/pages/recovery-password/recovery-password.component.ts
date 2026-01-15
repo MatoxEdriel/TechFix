@@ -52,11 +52,12 @@ export class RecoveryPasswordComponent implements OnInit {
 
       this.emailService.sendEmail(email).subscribe({
         next: (res) => {
-          this.toastService.show('Correo de recuperacion enviado ', 'success');
+          this.toastService.show(res.message, 'success');
           this.router.navigate(['/auth/verify']);
         },
         error: (err) => {
-          this.toastService.show('Error al enviar el correo de recuperación', 'error');
+          const errorMsg = err.error?.message || 'Error al enviar el correo';
+          this.toastService.show(errorMsg, 'error');
         }
       })
 

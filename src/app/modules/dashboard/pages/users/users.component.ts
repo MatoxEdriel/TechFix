@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
     { label: 'Nombre Completo', def: 'name', type: 'text' },
     { label: 'Correo', def: 'email', type: 'text' },
     { label: 'Rol', def: 'role', type: 'text' },
-    { label: 'Estado', def: 'status', type: 'status' }, 
+    { label: 'Estado', def: 'status', type: 'status' },
     {
       label: 'Acciones',
       def: '',
@@ -51,6 +51,13 @@ export class UsersComponent implements OnInit {
         this.userList = this.userList.filter(u => u.id !== event.row.id);
       }
     }
+  }
+
+  
+
+  createUser() {
+
+
   }
 
 }
