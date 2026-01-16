@@ -14,7 +14,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
 
-
+  private readonly RECOVERY_EMAIL_KEY = 'recovery_email';
   private readonly baseUrl = environments.api.baseUrl;
   private readonly authPath = environments.auth.loginUrl;
 
@@ -29,6 +29,19 @@ export class AuthService {
       })
     )
   }
+
+  //!PRUEBA 1 
+
+  verifyCode(email: string, code: string) {
+    const url = `${this.baseUrl}/auth/verify-code`
+    return this.http.post<IHttpResponse<AuthResponse>>(url, { email, code })
+      .pipe(tap(response => {
+        if (response.data) {
+          this.saveSession(response.data)
+        }
+      }))
+  }
+
 
   //Cambio de contraseña con reemplazo de token 
 
@@ -69,8 +82,18 @@ export class AuthService {
 
 
 
+
+
+
   get currentUser() {
     const user = localStorage.getItem(STORAGE_KEYS.USER);
     return user ? JSON.parse(user) : null
   }
+
+  //Verificacion de codigo otp. 
+  //!debo enviar el codigo otp  
+
+
+
+
 }
