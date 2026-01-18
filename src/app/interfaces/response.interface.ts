@@ -23,6 +23,12 @@ export interface AuthResponse {
 
 }
 
+export interface RecoveryResponse{
+    recoveryToken: string;
+
+
+}
+
 
 
 

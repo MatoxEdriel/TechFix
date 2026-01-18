@@ -4,6 +4,7 @@ import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validat
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmailService } from '../../../../shared/services/email.service';
 import { ToastService } from '../../../../shared/services/Toast.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class RecoveryPasswordComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private readonly emailService: EmailService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly authService: AuthService
 
   ) {
     this.form = this.fb.group({
@@ -53,6 +55,7 @@ export class RecoveryPasswordComponent implements OnInit {
       this.emailService.sendEmail(email).subscribe({
         next: (res) => {
           this.toastService.show(res.message, 'success');
+          this.authService.setRecoveryEmail(email);
           this.router.navigate(['/auth/verify']);
         },
         error: (err) => {

@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environments } from '../../../../environment/environment.dev';
 import { loginUser } from '../interfaces/auth.interface';
-import { AuthResponse, IHttpResponse } from '../../../interfaces/response.interface';
-import { STORAGE_KEYS } from '../../../core/constants/storage.constants';
+import { AuthResponse, IHttpResponse, RecoveryResponse, UserInfo } from '../../../interfaces/response.interface';
 import { Router } from '@angular/router';
+import { StorageService } from '../../../shared/services/Storage.service';
+import { STORAGE_KEYS } from '../../../core/enums/storage-keys.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private storage = inject(StorageService)
+
 
 
   private readonly baseUrl = environments.api.baseUrl;
@@ -30,6 +33,34 @@ export class AuthService {
     )
   }
 
+
+  //!Con esto resolvemos el problema seteamos el valor del email ingrsado previamente
+
+  setRecoveryEmail(email: string): void {
+
+    this.storage.setItem(STORAGE_KEYS.OTP_EMAIL, email)
+
+
+
+  }
+
+  //!PRUEBA 1 
+
+  verifyCode(code: string) {
+    const email = this.storage.getItem<string>(STORAGE_KEYS.OTP_EMAIL);
+
+    const url = `${this.baseUrl}/auth/verify-code`
+    return this.http.post<IHttpResponse<RecoveryResponse>>(url, { email, code })
+      .pipe(tap(response => {
+        if (response.data) {
+          const token_recovery = response.data.recoveryToken;
+          //aqui seteamos el token para que este el recovery token
+          this.storage.setItem(STORAGE_KEYS.RECOVERY_TOKEN, token_recovery)
+          this.storage.removeItem(STORAGE_KEYS.OTP_EMAIL)
+        }
+      }))
+  }
+
   //Cambio de contraseña con reemplazo de token 
 
   updatePassword(newPassword: string) {
@@ -44,22 +75,47 @@ export class AuthService {
     )
   }
 
+  resetPasswordwithToken(newPassword: string) {
+
+    const url = `${this.baseUrl}/auth/reset-password`;
+
+
+    const recoveryToken = this.storage.getItem<string>(STORAGE_KEYS.RECOVERY_TOKEN);
+
+    if (!recoveryToken) {
+
+      throw new Error('no se encontro el token de recuperacion')
+    }
+    //enotnces aqui tengo un ejemplo de mandar en un header 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${recoveryToken}`
+    });
+    const body = { newPass: newPassword }
+    return this.http.post<IHttpResponse<null>>(url, body, { headers }).pipe(
+      tap(() => {
+        this.storage.removeItem(STORAGE_KEYS.RECOVERY_TOKEN);
+      })
+    );
+  }
+
+
   private saveSession(data: AuthResponse): void {
-    localStorage.setItem(STORAGE_KEYS.TOKEN, data.access_token);
-    localStorage.setItem(STORAGE_KEYS.FIRST_LOGIN, String(data.first_login));
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data.user))
+    this.storage.setItem(STORAGE_KEYS.TOKEN, data.access_token);
+    this.storage.setItem(STORAGE_KEYS.FIRST_LOGIN, data.first_login);
+    this.storage.setItem(STORAGE_KEYS.USER, data.user)
+
+
   }
 
   get isFirstLogin(): boolean {
-    return localStorage.getItem(STORAGE_KEYS.FIRST_LOGIN) === 'true';
+    return this.storage.getItem<boolean>(STORAGE_KEYS.FIRST_LOGIN) ?? false;
   }
 
 
   logOut() {
 
-    localStorage.removeItem(STORAGE_KEYS.TOKEN)
-    localStorage.removeItem(STORAGE_KEYS.USER);
-    localStorage.removeItem(STORAGE_KEYS.FIRST_LOGIN);
+    this.storage.clear();
+
     this.router.navigate(['/auth/sign-in']).then(() => {
       window.location.reload();
     })
@@ -69,8 +125,20 @@ export class AuthService {
 
 
 
+
+
+
   get currentUser() {
-    const user = localStorage.getItem(STORAGE_KEYS.USER);
-    return user ? JSON.parse(user) : null
+    return this.storage.getItem<any>(STORAGE_KEYS.USER);
+
   }
+
+
+
+  //Verificacion de codigo otp. 
+  //!debo enviar el codigo otp  
+
+
+
+
 }

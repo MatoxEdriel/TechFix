@@ -6,6 +6,8 @@ import { AuthService } from '../../services/auth.service';
 import { loginUser } from '../../interfaces/auth.interface';
 import { ToastComponent } from '../../../../shared/components/toast/toast.component';
 import { ToastService } from '../../../../shared/services/Toast.service';
+import { StorageService } from '../../../../shared/services/Storage.service';
+import { STORAGE_KEYS } from '../../../../core/enums/storage-keys.enum';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private readonly authService: AuthService,
-    private readonly toastService: ToastService
+    private readonly toastService: ToastService,
+    private readonly storageService: StorageService
   ) {
     this.form = this.fb.group({
       user_name: ['', [Validators.required]],
@@ -39,11 +42,6 @@ export class LoginComponent implements OnInit {
     });
 
   }
-
-
-
-
-
 
   ngOnInit() {
     this.user_name = this.form.get('user_name') as FormControl;
@@ -73,7 +71,9 @@ export class LoginComponent implements OnInit {
 
       next: (res) => {
 
-        localStorage.setItem('access_token', res.data.access_token);
+        //recuerdaque el primer parametro va a ser como va ser guardado la data 
+        this.storageService.setItem(STORAGE_KEYS.TOKEN, res.data.access_token);
+
 
         if (res.data.first_login) {
           this.router.navigate(['/auth/change-password']);

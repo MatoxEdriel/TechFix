@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { ToastService } from '../../../../shared/services/Toast.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -55,11 +58,18 @@ export class ResetPasswordComponent implements OnInit {
   }
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly toastService: ToastService,
+    private fb: FormBuilder) {
     this.form = this.fb.group({
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
     }, { validators: this.passwordMatchValidator });
+
+
+
   }
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -70,10 +80,43 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword() {
     if (this.form.valid) {
-      console.log(this.form.value);
+
+
+      const newPass = this.form.get('password')?.value;
+
+      //todo poner toast con el problema en cuestion
+      this.authService.resetPasswordwithToken(newPass).subscribe({
+        next: (res) => {
+          this.toastService.show(res.message, 'success')
+          this.router.navigate(['/auth/sign-in'])
+        },
+        error: (err) => {
+          this.toastService.show(err.message, 'error')
+
+
+        }
+
+
+
+      })
+
+
+
+
+
+
+
     } else {
       this.form.markAllAsTouched();
     }
   }
+
+
+
+
+
+
+
+
 
 }
