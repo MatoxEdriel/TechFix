@@ -1,14 +1,16 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { STORAGE_KEYS } from '../constants/storage.constants';
+import { StorageService } from '../../shared/services/Storage.service';
+import { STORAGE_KEYS } from '../enums/storage-keys.enum';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
 
 
   const router = inject(Router);
+  const storage = inject(StorageService);
 
-  const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+  const token = storage.getItem<string>(STORAGE_KEYS.TOKEN);
 
   if (token) {
 

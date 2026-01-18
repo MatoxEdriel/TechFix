@@ -1,14 +1,17 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { STORAGE_KEYS } from '../constants/storage.constants';
+import { StorageService } from '../../shared/services/Storage.service';
+import { STORAGE_KEYS } from '../enums/storage-keys.enum';
 
 
 //!Este guardian sirve para rebotar si existe un token activo y asi no pueda iniciar sesion 
 
 export const guestGuard: CanActivateFn = (route, state) => {
 
+
+  const storage = inject(StorageService);
   const router = inject(Router);
-  const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+  const token = storage.getItem<string>(STORAGE_KEYS.TOKEN);
 
 
 

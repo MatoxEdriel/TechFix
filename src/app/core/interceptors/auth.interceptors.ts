@@ -3,16 +3,18 @@ import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../../modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
-import { STORAGE_KEYS } from '../constants/storage.constants';
-
-
-
-
+import { StorageService } from '../../shared/services/Storage.service';
+import { STORAGE_KEYS } from '../enums/storage-keys.enum';
 
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
-    const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    const storage = inject(StorageService);
+
+
+    const token = storage.getItem<string>(STORAGE_KEYS.TOKEN);
+
+    
     let authReq = req
     if (token) {
         authReq = req.clone({
