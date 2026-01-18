@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environments } from '../../../../environment/environment.dev';
@@ -61,7 +61,6 @@ export class AuthService {
       }))
   }
 
-
   //Cambio de contraseña con reemplazo de token 
 
   updatePassword(newPassword: string) {
@@ -74,6 +73,29 @@ export class AuthService {
         this.saveSession(response)
       })
     )
+  }
+
+  resetPasswordwithToken(newPassword: string) {
+
+    const url = `${this.baseUrl}/auth/reset-password`;
+
+
+    const recoveryToken = this.storage.getItem<string>(STORAGE_KEYS.RECOVERY_TOKEN);
+
+    if (!recoveryToken) {
+
+      throw new Error('no se encontro el token de recuperacion')
+    }
+    //enotnces aqui tengo un ejemplo de mandar en un header 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${recoveryToken}`
+    });
+    const body = { newPass: newPassword }
+    return this.http.post<IHttpResponse<null>>(url, body, { headers }).pipe(
+      tap(() => {
+        this.storage.removeItem(STORAGE_KEYS.RECOVERY_TOKEN);
+      })
+    );
   }
 
 
