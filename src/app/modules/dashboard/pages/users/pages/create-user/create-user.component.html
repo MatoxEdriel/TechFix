@@ -1,0 +1,56 @@
+<dialog #modalRef class="modal">
+  <div class="modal-box">
+
+    <h3 class="font-bold text-lg">
+      Registrar nuevo usuario
+    </h3>
+
+
+    <form [formGroup]="userForm" (ngSubmit)="save()">
+
+      <div class="form-control w-full mt-4">
+
+        <label class="label"><span class="label-text">Nombre Completo</span></label>
+        <input type="text" formControlName="name" placeholder="Ej. Juan Pérez" class="input input-bordered w-full" />
+
+
+      </div>
+
+
+      <div class="form-control w-full mt-2">
+        <label class="label"><span class="label-text">Correo Electrónico</span></label>
+        <input type="email" formControlName="email" placeholder="juan@gmail.com" class="input input-bordered w-full" />
+      </div>
+
+
+
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="close()">Cancelar</button>
+
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+          Guardar Cliente
+        </button>
+      </div>
+
+
+
+
+
+    </form>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</dialog>
