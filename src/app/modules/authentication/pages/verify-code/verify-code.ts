@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../../../shared/services/Toast.service';
+import { StorageService } from '../../../../shared/services/Storage.service';
 @Component({
   selector: 'app-verify-code',
   templateUrl: './verify-code.html',
@@ -10,15 +12,18 @@ import { AuthService } from '../../services/auth.service';
 export class VerifyCodeComponent {
 
 
-  otpCode!: '';
+  //Solo es un valor en este caso email
 
-  otpValue: string = '';
+  otpCode: string = '';
 
   constructor(
 
     private router: Router,
     private route: ActivatedRoute,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
+    private readonly storageService: StorageService
+
   ) { }
 
 
@@ -26,33 +31,32 @@ export class VerifyCodeComponent {
 
 
 
+  //todo usar el debounce de angular
 
-
-  onOtpChange(otpCode: string) {
-    this.otpValue = otpCode;
-    this.authService.verifyCode('', this.otpValue).subscribe({
-      next: (response) => {
-
-
-
-      },
-      error: (error) => {
-
-
-      }
-    });
-
-
+  onOtpChange(code: string) {
+    this.otpCode = code
 
   }
 
+
+
   verifyCode() {
 
+    if (this.otpCode.length < 4) {
+      this.toastService.show('El codigo debe ser de 4 digitos', 'error')
+      return;
 
+    }
 
-
-
-    this.router.navigate(['/auth/reset-password']);
+    this.authService.verifyCode(this.otpCode).subscribe({
+      next: (res) => {
+        this.toastService.show(res.message, 'success')
+        this.router.navigate(['/auth/reset-password']);
+      },
+      error: (err) => {
+        this.toastService.show(err.message, 'error')
+      }
+    })
   }
 
 

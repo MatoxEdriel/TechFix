@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environments } from '../../../../environment/environment.dev';
 import { loginUser } from '../interfaces/auth.interface';
-import { AuthResponse, IHttpResponse, UserInfo } from '../../../interfaces/response.interface';
+import { AuthResponse, IHttpResponse, RecoveryResponse, UserInfo } from '../../../interfaces/response.interface';
 import { Router } from '@angular/router';
 import { StorageService } from '../../../shared/services/Storage.service';
 import { STORAGE_KEYS } from '../../../core/enums/storage-keys.enum';
@@ -33,14 +33,30 @@ export class AuthService {
     )
   }
 
+
+  //!Con esto resolvemos el problema seteamos el valor del email ingrsado previamente
+
+  setRecoveryEmail(email: string): void {
+
+    this.storage.setItem(STORAGE_KEYS.OTP_EMAIL, email)
+
+
+
+  }
+
   //!PRUEBA 1 
 
-  verifyCode(email: string, code: string) {
+  verifyCode(code: string) {
+    const email = this.storage.getItem<string>(STORAGE_KEYS.OTP_EMAIL);
+
     const url = `${this.baseUrl}/auth/verify-code`
-    return this.http.post<IHttpResponse<AuthResponse>>(url, { email, code })
+    return this.http.post<IHttpResponse<RecoveryResponse>>(url, { email, code })
       .pipe(tap(response => {
         if (response.data) {
-          this.saveSession(response.data)
+          const token_recovery = response.data.recoveryToken;
+          //aqui seteamos el token para que este el recovery token
+          this.storage.setItem(STORAGE_KEYS.RECOVERY_TOKEN, token_recovery)
+          this.storage.removeItem(STORAGE_KEYS.OTP_EMAIL)
         }
       }))
   }
