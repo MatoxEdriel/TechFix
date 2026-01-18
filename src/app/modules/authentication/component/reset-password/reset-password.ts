@@ -84,7 +84,6 @@ export class ResetPasswordComponent implements OnInit {
 
       const newPass = this.form.get('password')?.value;
 
-      //todo poner toast con el problema en cuestion
       this.authService.resetPasswordwithToken(newPass).subscribe({
         next: (res) => {
           this.toastService.show(res.message, 'success')
