@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -5,7 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, CommonModule]
 })
 export class CreateUserComponent implements OnInit {
 
@@ -18,13 +19,28 @@ export class CreateUserComponent implements OnInit {
   userForm: FormGroup;
 
 
+  roles = [
+
+    { id: 'ADMIN', label: 'Administrador' },
+    { id: 'USER', label: 'Usuario' },
+    { id: 'TECH', label: 'Tecnico' },
+  ]
+
+
+
   constructor(
     private fb: FormBuilder
 
   ) {
     this.userForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]]
+      last_name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.minLength(3)]],
+      address: ['', [Validators.required, Validators.minLength(3)]],
+      role: ['', Validators.required],
+      birth_date: ['', Validators.required]
+
     });
   }
 
