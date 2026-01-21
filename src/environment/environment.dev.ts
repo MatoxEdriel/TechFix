@@ -11,8 +11,9 @@ export const environments = {
 
     auth: {
         loginUrl: '/auth/login',
-
     },
+
+    
 
     app: {
         name: 'TechFix Front'
