@@ -53,11 +53,14 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  
+
 
   createUser() {
 
 
   }
 
+  refreshTable() {
+    console.log("xdxd")
+  }
 }

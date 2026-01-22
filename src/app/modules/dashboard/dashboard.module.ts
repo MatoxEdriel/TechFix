@@ -10,6 +10,7 @@ import { DashboardCardComponent } from '../../shared/components/dashboard-card/d
 import { ServicesTechfixComponent } from './pages/services-techfix/services-techfix.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableListComponent } from '../../shared/components/table-list/table-list.component';
+import { CreateUserComponent } from "./pages/users/pages/create-user/create-user.component";
 
 @NgModule({
   imports: [
@@ -21,8 +22,8 @@ import { TableListComponent } from '../../shared/components/table-list/table-lis
     TopbarComponent,
     DashboardCardComponent,
     TableListComponent,
-    
-  ],
+    CreateUserComponent
+],
   declarations: [LayoutDashboardComponent, HomeComponent, ServicesTechfixComponent, UsersComponent]
 })
 export class DashboardModule { }
