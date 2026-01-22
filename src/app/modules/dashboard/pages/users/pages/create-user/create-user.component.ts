@@ -60,7 +60,26 @@ export class CreateUserComponent implements OnInit {
 
 
   save() {
-    if (this.userForm.invalid) return;
+    if (this.userForm.invalid) {
+
+      this.userForm.markAllAsTouched();
+      return
+
+    }
+
+    const userData = this.userForm.value;
+
+    this.userService.create(userData).subscribe({
+
+      next: (response) => {
+
+        this.close();
+        this.userSaved.emit();
+      }
+
+
+
+    })
 
 
     console.log("xd")
